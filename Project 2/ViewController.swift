@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var countries = [String]()
     var score = 0
     var correctAnswer = 0
+    var answeredQuestions = 0
 
 // MARK: - Set up
     override func viewDidLoad() {
@@ -71,11 +72,29 @@ class ViewController: UIViewController {
             score -= 1
         }
         
+        answeredQuestions += 1
+        
         let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
         // Creates an alert.
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         // Adds an action to the alert
-        present(ac, animated: true)
-        // Summons the alert.
+        if answeredQuestions <= 9 {
+            present(ac, animated: true)
+        } else {
+            totalQuestions()
+            resetAnsweredQuestions()
+        }
+    }
+    
+    func totalQuestions() {
+        let finished = UIAlertController(title: "Finished!", message: "Your total score is \(score)", preferredStyle: .alert)
+        finished.addAction(UIAlertAction(title: "Restart", style: .default, handler: askQuestion))
+        
+        answeredQuestions = 10
+            present(finished, animated: true)
+    }
+    
+    func resetAnsweredQuestions() {
+        answeredQuestions = 0
     }
 }
