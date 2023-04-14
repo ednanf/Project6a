@@ -55,7 +55,8 @@ class ViewController: UIViewController {
         button2.setImage(UIImage (named: countries[1]), for: .normal)
         button3.setImage(UIImage (named: countries[2]), for: .normal)
         
-        title = countries[correctAnswer].uppercased()
+        // EXTRA CHALLENGE 1: Try showing the player’s score in the navigation bar, alongside the flag to guess.
+        title = "Which is the flag of \(countries[correctAnswer].uppercased()) ? | Score: \(score)"
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
