@@ -92,6 +92,7 @@ class ViewController: UIViewController {
         
         answeredQuestions = 10
             present(finished, animated: true)
+        resetAnsweredQuestions()
     }
     
     func resetAnsweredQuestions() {
