@@ -54,7 +54,7 @@ class ViewController: UIViewController {
             title = "Correct"
             score += 1
         } else {
-            title = "Wrong"
+            title = "Wrong!"
             score -= 1
         }
         
@@ -75,6 +75,7 @@ class ViewController: UIViewController {
     }
 // MARK: - Functions
     
+    
     func askQuestion(action: UIAlertAction! = nil) {
         countries.shuffle()
         // This will shuffle the array, so the flags will be different each time, even if we always call for index 0, 1 and 2.
@@ -87,23 +88,27 @@ class ViewController: UIViewController {
         button3.setImage(UIImage (named: countries[2]), for: .normal)
         
         // EXTRA CHALLENGE 1: Try showing the player’s score in the navigation bar, alongside the flag to guess.
-        title = "Which is the flag of \(countries[correctAnswer].uppercased()) ? | Score: \(score)"
+        title = "Which is the flag of \(countries[correctAnswer].uppercased())? | Score: \(score)"
     }
     
     
     func finishedGame() {
-        let finished = UIAlertController(title: "Finished!", message: "Your total score is \(score)", preferredStyle: .alert)
+        let finished = UIAlertController(title: "Finished!", message: "Your final score is \(score)", preferredStyle: .alert)
         finished.addAction(UIAlertAction(title: "Restart", style: .default, handler: askQuestion))
         
         answeredQuestions = 10
             present(finished, animated: true)
     }
     
+    
     func resetAnsweredQuestions() {
         answeredQuestions = 0
     }
     
+    
     func resetScore() {
         score = 0
     }
+    
+    
 }
