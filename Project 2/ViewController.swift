@@ -51,6 +51,8 @@ class ViewController: UIViewController {
         var title: String
         // Extra challenge 3: requires to declare a new variable, this way customizing the if else is possible.
         let number = sender.tag
+        // We established in the function that the sender is the tapped UIButton. When we use .tag, we can see the tag number added in storyboard in each button's properties.
+        // If the associated tag number matches the randomly selected number from askQuestion(), it will be correct.
         
         if number == correctAnswer {
             title = "Correct! That's the flag of \(countries[number].uppercased())."
