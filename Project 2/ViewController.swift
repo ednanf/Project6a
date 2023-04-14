@@ -83,6 +83,7 @@ class ViewController: UIViewController {
         } else {
             totalQuestions()
             resetAnsweredQuestions()
+            resetScore()
         }
     }
     
@@ -97,5 +98,9 @@ class ViewController: UIViewController {
     
     func resetAnsweredQuestions() {
         answeredQuestions = 0
+    }
+    
+    func resetScore() {
+        score = 0
     }
 }
