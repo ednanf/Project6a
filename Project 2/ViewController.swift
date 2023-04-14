@@ -49,18 +49,20 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
     // IBAction = action in linked buttons from storyboard triggers the function.
         var title: String
+        // Extra challenge 3: requires to declare a new variable, this way customizing the if else is possible.
+        let number = sender.tag
         
-        if sender.tag == correctAnswer {
-            title = "Correct"
+        if number == correctAnswer {
+            title = "Correct! That's the flag of \(countries[number].uppercased())."
             score += 1
         } else {
-            title = "Wrong!"
+            title = "Wrong! That's the flag of \(countries[number].uppercased())."
             score -= 1
         }
         
         answeredQuestions += 1
         
-        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+        let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
         // Creates an alert. Creating a constant is needed to make the alert exist.
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         // Adds an action to the alert.
@@ -93,7 +95,7 @@ class ViewController: UIViewController {
     
     
     func finishedGame() {
-        let finished = UIAlertController(title: "Finished!", message: "Your final score is \(score)", preferredStyle: .alert)
+        let finished = UIAlertController(title: "Finished!", message: "Your final score is \(score).", preferredStyle: .alert)
         finished.addAction(UIAlertAction(title: "Restart", style: .default, handler: askQuestion))
         
         answeredQuestions = 10
