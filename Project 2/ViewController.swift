@@ -72,9 +72,10 @@ class ViewController: UIViewController {
         }
         
         let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
-        
+        // Creates an alert.
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        
+        // Adds an action to the alert
         present(ac, animated: true)
+        // Summons the alert.
     }
 }
