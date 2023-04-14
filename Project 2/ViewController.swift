@@ -45,6 +45,36 @@ class ViewController: UIViewController {
         askQuestion()
     }
 
+// MARK: - IBActions
+    @IBAction func buttonTapped(_ sender: UIButton) {
+    // IBAction = action in linked buttons from storyboard triggers the function.
+        var title: String
+        
+        if sender.tag == correctAnswer {
+            title = "Correct"
+            score += 1
+        } else {
+            title = "Wrong"
+            score -= 1
+        }
+        
+        answeredQuestions += 1
+        
+        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+        // Creates an alert. Creating a constant is needed to make the alert exist.
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+        // Adds an action to the alert.
+        
+        if answeredQuestions <= 9 {
+            present(ac, animated: true)
+        } else {
+            finishedGame()
+            resetAnsweredQuestions()
+            resetScore()
+        }
+    }
+// MARK: - Functions
+    
     func askQuestion(action: UIAlertAction! = nil) {
         countries.shuffle()
         // This will shuffle the array, so the flags will be different each time, even if we always call for index 0, 1 and 2.
@@ -60,40 +90,13 @@ class ViewController: UIViewController {
         title = "Which is the flag of \(countries[correctAnswer].uppercased()) ? | Score: \(score)"
     }
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
-    // IBAction triggers the code.
-        var title: String
-        
-        if sender.tag == correctAnswer {
-            title = "Correct"
-            score += 1
-        } else {
-            title = "Wrong"
-            score -= 1
-        }
-        
-        answeredQuestions += 1
-        
-        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
-        // Creates an alert.
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        // Adds an action to the alert
-        if answeredQuestions <= 9 {
-            present(ac, animated: true)
-        } else {
-            totalQuestions()
-            resetAnsweredQuestions()
-            resetScore()
-        }
-    }
     
-    func totalQuestions() {
+    func finishedGame() {
         let finished = UIAlertController(title: "Finished!", message: "Your total score is \(score)", preferredStyle: .alert)
         finished.addAction(UIAlertAction(title: "Restart", style: .default, handler: askQuestion))
         
         answeredQuestions = 10
             present(finished, animated: true)
-        resetAnsweredQuestions()
     }
     
     func resetAnsweredQuestions() {
